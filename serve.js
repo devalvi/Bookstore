@@ -14,9 +14,9 @@ app.use(cors())
 app.use(express.json())
 app.get('/books', (req, res) => {
     res.json({
-        books: books
+        books: books.sort(() => { Math.random() - 0.5 })
     })
     res.end()
 })
 
-app.listen(3030)
+app.listen(3031) 

@@ -1,4 +1,14 @@
 <!-- eslint-disable no-undef -->
+/**
+ TODO
+ - add lazy loading to images*
+- make the cards responsive
+- add search bar *
+- add stars*
+- space buy button, add to cart and add to favorites button
+- implement search feature  
+- create template for book preview
+*/
 <template>
   <div class="application">
     <header>
@@ -44,6 +54,18 @@
     </header>
 
     <main>
+      <div>
+        <b-form inline @submit="search" action="/books">
+          <label class="sr-only" for="inline-form-input-search">Search</label>
+          <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
+            <b-input-group-prepend is-text>
+            <b-icon icon="search" variant="success"></b-icon>
+            </b-input-group-prepend>
+            <b-form-input id="inline-form-input-search" v-model="searchItem" :placeholder="placeholder"></b-form-input>
+          </b-input-group>
+
+        </b-form>
+        </div>
        <BookCard v-for="(book, index) in books" :key="index" :bookInfo="book"/>
     </main>
     <footer></footer>
@@ -53,24 +75,45 @@
 <script>
 import BookCard from './components/BookCard.vue'
 import axios from 'axios';
+import { SuperPlaceholder } from './superplaceholder';
 export default {
   name: 'App',
   components: { BookCard},
   data(){
-    return { books: []}
+    return { books: [], placeholder: '', searchItem: ''}
   },
   methods: {
     async fetchBooks(){
       try {
         let url = window.location.hostname;
-        const response = await axios.get('http://'+ url +':3030/books');
-        this.books = response.data.books
+        let response = await axios.get('http://'+ url +':3031/books');
+        this.books = response.data.books.slice(0,20)
       } catch (error) {
         console.error(error);
 }
-    }},
+    }, 
+    dynamicPlaceholder(){
+      let sp = new SuperPlaceholder({
+        placeholders: ["popular books", "famous authors", "collections"],
+        preText: "Look for ",
+        stay: 1000,
+        speed: 100,
+        element: '#inline-form-input-search'
+      });
+      sp.init();
+    },
+    search(event){
+      event.preventDefault();
+      console.log(this.searchItem)
+      // when data arrives , show results
+      if(this.searchItem != this.searchItem.toString.trim()){
+      // query searchItem while displaying spinner
+      }
+    }
+  },
     mounted(){
       this.fetchBooks()
+      this.dynamicPlaceholder()
     }
 }
 /**
