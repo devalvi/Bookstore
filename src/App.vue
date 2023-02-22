@@ -59,14 +59,14 @@
           <label class="sr-only" for="inline-form-input-search">Search</label>
           <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
             <b-input-group-prepend is-text>
-            <b-icon icon="search" variant="success"></b-icon>
+              <b-icon icon="search" variant="success"></b-icon>
             </b-input-group-prepend>
             <b-form-input id="inline-form-input-search" v-model="searchItem" :placeholder="placeholder"></b-form-input>
           </b-input-group>
 
         </b-form>
-        </div>
-       <BookCard v-for="(book, index) in books" :key="index" :bookInfo="book"/>
+      </div>
+      <BookCard v-for="(book, index) in books" :key="index" :bookInfo="book" />
     </main>
     <footer></footer>
   </div>
@@ -78,21 +78,21 @@ import axios from 'axios';
 import { SuperPlaceholder } from './superplaceholder';
 export default {
   name: 'App',
-  components: { BookCard},
-  data(){
-    return { books: [], placeholder: '', searchItem: ''}
+  components: { BookCard },
+  data() {
+    return { books: [], placeholder: '', searchItem: '' }
   },
   methods: {
-    async fetchBooks(){
+    async fetchBooks() {
       try {
         let url = window.location.hostname;
-        let response = await axios.get('http://'+ url +':3031/books');
-        this.books = response.data.books.slice(0,20)
+        let response = await axios.get('http://' + url + ':3031/books');
+        this.books = response.data.books.slice(0, 20)
       } catch (error) {
         console.error(error);
-}
-    }, 
-    dynamicPlaceholder(){
+      }
+    },
+    dynamicPlaceholder() {
       let sp = new SuperPlaceholder({
         placeholders: ["popular books", "famous authors", "collections"],
         preText: "Look for ",
@@ -102,19 +102,19 @@ export default {
       });
       sp.init();
     },
-    search(event){
+    search(event) {
       event.preventDefault();
       console.log(this.searchItem)
       // when data arrives , show results
-      if(this.searchItem != this.searchItem.toString.trim()){
-      // query searchItem while displaying spinner
+      if (this.searchItem != this.searchItem.toString.trim()) {
+        // query searchItem while displaying spinner
       }
     }
   },
-    mounted(){
-      this.fetchBooks()
-      this.dynamicPlaceholder()
-    }
+  mounted() {
+    this.fetchBooks()
+    this.dynamicPlaceholder()
+  }
 }
 /**
  * 
@@ -131,6 +131,7 @@ export default {
 .application {
   font-family: Poppins
 }
+
 .logo {
   width: 70px;
 }
@@ -140,6 +141,7 @@ main {
   width: 90%;
   padding: 10px;
 }
+
 .addtocart {
   direction: ltr
 }
