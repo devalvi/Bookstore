@@ -1,4 +1,5 @@
 const express = require('express');
+const { shuffle } = require('lodash')
 const cors = require('cors')
 let books = []
 let lineReader = require('readline').createInterface({
@@ -14,9 +15,7 @@ app.use(cors())
 app.use(express.json())
 app.get('/books', (req, res) => {
     res.json({
-        books: books.sort(() => {
-            Math.random() - 0.5
-        })
+        books: shuffle(books)
     })
     res.end()
 })

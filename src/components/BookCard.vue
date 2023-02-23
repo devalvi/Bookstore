@@ -1,7 +1,10 @@
 <template>
   <div class="flex-container">
-    <b-card :title="title" style="width: 33rem;" class="mb-2">
-      <b-card-subtitle>
+    <b-card style="width: 33rem;" class="mb-2">
+      <b-card-img-lazy :src="imgSource" img-alt="Image" img-top />
+      <b-card-text class="book-title">{{ title }}</b-card-text>
+      <b-card-text class="description"> {{ description }}</b-card-text>
+      <b-card-subtitle class="stars">
         <b-icon icon="star-fill" v-if="rating >= 1" variant="warning"></b-icon>
         <b-icon icon="star-half" v-else-if="rating == 0.5" variant="warning"></b-icon>
         <b-icon v-else icon="star" variant="warning"></b-icon>
@@ -17,14 +20,13 @@
         <b-icon icon="star-fill" v-if="rating >= 5" variant="warning"></b-icon>
         <b-icon icon="star-half" v-else-if="rating == 4.5" variant="warning"></b-icon>
         <b-icon icon="star" v-else variant="warning"></b-icon>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <b-icon icon="download" variant="primary"></b-icon>&nbsp;
-        {{ ratingCount }}
+        <span class="download_count"><b-icon icon="download" variant="primary"></b-icon>&nbsp;
+          {{ ratingCount }}</span>
       </b-card-subtitle>
-      <b-card-img-lazy :src="imgSource" img-alt="Image" img-top />
-      <b-card-text> {{ description }}</b-card-text>
-      <b-button href="#" variant="danger">Buy</b-button>
-      <b-button href="#" variant="secondary"><b-icon icon="bookmark-plus"></b-icon></b-button>
-      <b-button href="#" class="addtocart" variant="secondary"><b-icon icon="cart-plus"></b-icon></b-button>
+      <br />
+      <b-button class="buy-btn" href="#">BUY NOW</b-button>
+      <b-button class="bookmark-btn" href="#"><b-icon icon="bookmark-plus"></b-icon></b-button>
+      <b-button class="cart-btn" href="#"><b-icon icon="cart-plus"></b-icon></b-button>
     </b-card>
   </div>
 </template>
@@ -56,7 +58,42 @@ export default {
 }
 </script>
 <style scoped>
-.flex-container {
+.flex-container,
+.stars {
   display: flex;
+}
+
+.download_count,
+.bookmark-btn,
+.cart-btn {
+  position: absolute;
+}
+
+.download_count {
+  right: 5%;
+  ;
+}
+
+.buy-btn, .cart-btn, .bookmark-btn {
+  background-color: hsl(168, 86%, 17%);
+}
+
+.cart-btn {
+  right: 15%;
+}
+
+.bookmark-btn {
+  right: 5%;
+}
+.book-title {
+  text-transform: uppercase;
+  font-family: Poppins;
+  padding-top: 10px;
+  font-size: large;
+  font-weight: 500;
+}
+.description {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 </style>
