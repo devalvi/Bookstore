@@ -1,14 +1,13 @@
 <template>
     <div class="container">
-        <div class="upper"></div>
-        <div class="center-card"></div>
-        <div class="lower"></div>
+        <div class="left">e</div>
+        <div class="right">r</div>
     </div>
 </template>
 <script>
 export default {
     name: 'AboutView',
-    data (){
+    data() {
         return {}
     }
 }
@@ -16,31 +15,28 @@ export default {
 <style scoped>
 * {
     margin: 0;
+    box-sizing: border-box;
 }
+
 .container {
     padding: 0;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
-.upper , .lower {
-    width: 100vw;
-    height: 50vh;
+
+.left {
+    width: 50vw;
+    background-color: red;
+    height: 100vh
 }
-.upper {
-    background-color: rgb(0, 79, 17);
-}
-.lower {
-    background-color: #730c0f;
-}
-.center-card {
-    position: absolute;
-    left: 30%;
-    top: 45%;
-    width: 250px;
-    height: 250px;
-    background-color: white;
-    border-radius: 15px;
+
+.right {
+    background-color: rgb(52, 74, 13);
+    width: 50vw;
+    height: 100vh;
 }
 </style>
