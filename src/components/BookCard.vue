@@ -1,7 +1,8 @@
 <template>
   <div class="flex-container">
-    <b-card style="width: 33rem;" class="mb-2">
-      <b-card-img-lazy :src="imgSource" img-alt="Image" img-top />
+    <b-card style="width: 33rem;" class="mb-4">
+      <b-card-text v-html="cost">{{ cost }}</b-card-text>
+      <b-card-img-lazy :src="imgSource" img-alt="Image" class="pb-2 px-2" img-top />
       <b-card-text class="book-title">{{ title }}</b-card-text>
       <b-card-text class="description"> {{ description }}</b-card-text>
       <b-card-subtitle class="stars">
@@ -41,7 +42,8 @@ export default {
       imgSource: '',
       description: '',
       rating: '',
-      ratingCount: ''
+      ratingCount: '',
+      cost: ''
     }
   },
   mounted() {
@@ -54,6 +56,10 @@ export default {
         else return stars / 2;
       })();
     this.ratingCount = Math.floor(Math.random() * (1000 - 200 + 1)) + 200;
+    this.cost = (() => {
+      let cost = Math.floor(Math.random()*(99-2+1)+2).toString().concat('.') + Math.floor(Math.random()*(99-2+1)+2);
+      return '<span style="color: hsla(45, 2%, 41%, 0.681)">Ksh </span>' + '<span style="color: #B12704; font-family: Poppins">' +cost+ '</span>';
+    })()
   }
 }
 </script>
@@ -68,7 +74,6 @@ export default {
 .cart-btn {
   position: absolute;
 }
-
 .download_count {
   right: 5%;
   ;
