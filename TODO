@@ -1,15 +1,7 @@
-.
->> Mobile design
-- create about page
-- create favourites
-- create cart
-- create profile
-- remove padding from card images*
-- resize buy , cart & favourites button
-- create bottom screen modal for add/remove from favourites
-- create bottom screnn loader
+Cart *
+Favorites *
+Profile *
+Spinner functionality *
+Individual book template *
 
->>> about page
-- 
-
-*/
+Mobile design
