@@ -25,7 +25,7 @@
           {{ ratingCount }}</span>
       </b-card-subtitle>
       <br />
-      <b-button class="buy-btn" href="#">BUY NOW</b-button>
+      <b-button class="buy-btn" href="#">SHOP NOW</b-button>
       <b-button class="bookmark-btn" href="#"><b-icon icon="bookmark-plus"></b-icon></b-button>
       <b-button class="cart-btn" href="#"><b-icon icon="cart-plus"></b-icon></b-button>
     </b-card>
@@ -81,6 +81,7 @@ export default {
 
 .buy-btn, .cart-btn, .bookmark-btn {
   background-color: hsl(168, 86%, 17%);
+  font-family: 'National-bold';
 }
 
 .cart-btn {
@@ -92,13 +93,14 @@ export default {
 }
 .book-title {
   text-transform: uppercase;
-  font-family: Poppins;
+  font-family: 'National-bold';
   padding-top: 10px;
-  font-size: large;
-  font-weight: 500;
+  font-size: 120% !important;
+  font-optical-sizing: none;
 }
 .description {
   padding-top: 10px;
   padding-bottom: 10px;
+  font-family: Poppins;
 }
 </style>
